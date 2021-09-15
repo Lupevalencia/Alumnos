@@ -12,4 +12,9 @@ public interface IAccesoDatosAlumnos {
     void escribirAlumno(Alumno alumno ,String nombreFicheroAlumnos, boolean anexar) throws EscrituraDatosEx;
      
     void crearAlumno(String nombreFicheroAlumnos) throws AccesoDatosEx;
+    
+    float promedioEdad(String nombreFicheroAlumnos)throws AccesoDatosEx;
+    
+    int totalPersonas(String nombreFicheroAlumnos)throws AccesoDatosEx;
+    
 }

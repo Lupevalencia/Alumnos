@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class AlumnosPresentacion {
     public static void main(String[] args) {
-   //Un máximo establecido de 10 alumnos.
+
        var opcion = -1;
        var scanner = new Scanner(System.in);
         
-       Alumno alumno = new Alumno();
+      IAlumnos misAlumnos = new AlumnosImpl();
         
        while(opcion != 0){
             System.out.println("Elige una opcion : \n"
@@ -24,7 +24,7 @@ public class AlumnosPresentacion {
             
             switch (opcion){
                 case 1:
-                     System.out.println("Introduce el nombre de la pesona : ");
+                     System.out.println("Introduce el nombre de la persona : ");
                      String nombre = scanner.nextLine();
                         
                      System.out.println("Introduce el sexo de la persona : ");
@@ -42,7 +42,8 @@ public class AlumnosPresentacion {
                      String pesoString = scanner.nextLine();
                      float peso = Float.parseFloat(pesoString);
                         
-                      Alumno alumnoAgregado = new Alumno(nombre,sexo,edad,estatura,peso);
+                      Alumno alumnoAAgregar = new Alumno(nombre,sexo,edad,estatura,peso);
+                      
                         
                    break;
 

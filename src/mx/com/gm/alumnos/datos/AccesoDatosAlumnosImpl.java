@@ -1,10 +1,7 @@
 
 package mx.com.gm.alumnos.datos;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mx.com.gm.alumnos.domain.Alumno;
@@ -41,7 +38,75 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
     public void crearAlumno(String nombreFicheroAlumnos) throws AccesoDatosEx {
        File archivoAlumnos = new File(nombreFicheroAlumnos);
        
-       var salida = new PrintWriter(new FileWriter(archivoAlumnos,anexar));
+        try {
+            var salida = new PrintWriter(new FileWriter(archivoAlumnos));
+            salida.close();
+            System.out.println("Se ha creado el archivo de Alumnos");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());
+        }
     }
+
+    @Override
+    public float promedioEdad(String nombreFicheroAlumnos) throws AccesoDatosEx {
+        File archivoAlumnos = new File(nombreFicheroAlumnos);
+        float resultadoPromedio = 0;
+        try {
+            var entrada = new BufferedReader(new FileReader(archivoAlumnos));
+            String linea = null;
+            linea = entrada.readLine();
+            
+            //float resultadoPromedio = 0;
+            int indice = 0;
+            while (linea != null){
+                String[] lineaArray = linea.split(";");
+                if (lineaArray[1].equalsIgnoreCase("masculino")) { 
+                    resultadoPromedio += Float.parseFloat(lineaArray[2]);
+                    indice++;
+                }
+                linea = entrada.readLine();
+            }
+            resultadoPromedio /= indice;
+            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());            
+        }
+        System.out.println("La edad promedio de personas con sexo masculino es: ");
+        return resultadoPromedio;
+    }
+    
+    @Override
+    public int totalPersonas(String nombreFicheroAlumnos) throws AccesoDatosEx {
+        File archivoAlumnos = new File(nombreFicheroAlumnos);
+        int resultadoPersonas = 0;
+        try {
+            var entrada = new BufferedReader(new FileReader(archivoAlumnos));
+            String linea = null;
+            linea = entrada.readLine();
+            
+            while (linea != null){
+                String[] lineaArray = linea.split(";");
+                if (Float.parseFloat(lineaArray[3]) >= 1.65) { 
+                    resultadoPersonas++;
+                }
+                linea = entrada.readLine();
+            }
+            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());               
+        }
+        System.out.println("El número total de personas que miden más de 1.65 es: ");
+        return resultadoPersonas;
+    }
+
     
 }

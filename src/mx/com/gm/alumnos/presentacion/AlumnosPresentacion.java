@@ -3,6 +3,8 @@ package mx.com.gm.alumnos.presentacion;
 
 import mx.com.gm.alumnos.domain.Alumno;
 import java.util.Scanner;
+import mx.com.gm.alumnos.servicio.AlumnosImpl;
+import mx.com.gm.alumnos.servicio.IAlumnos;
 
 
 public class AlumnosPresentacion {
@@ -44,17 +46,15 @@ public class AlumnosPresentacion {
                         
                       Alumno alumnoAAgregar = new Alumno(nombre,sexo,edad,estatura,peso);
                       
-                        
+                        misAlumnos.escribirArchivoAlumnos(alumnoAAgregar);
                    break;
 
                 case 2:
                     //LLamar a los métodos y escribir el resultado por pantalla
-                    break;
-                case 3:
-                   
+                    misAlumnos.LeerYProcesarAlumnos();
                     break;
                 case 0:
-                    System.out.println("Hasta pronto!!");
+                    System.out.println("Terminar!!");
                     break;
                 default:
                     System.out.println("Opcion no reconocida");

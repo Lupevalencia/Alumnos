@@ -2,8 +2,6 @@
 package mx.com.gm.alumnos.datos;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mx.com.gm.alumnos.domain.Alumno;
 import mx.com.gm.alumnos.excepciones.AccesoDatosEx;
 import mx.com.gm.alumnos.excepciones.EscrituraDatosEx;
@@ -51,7 +49,7 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
     @Override
     public float promedioEdad(String nombreFicheroAlumnos) throws AccesoDatosEx {
         File archivoAlumnos = new File(nombreFicheroAlumnos);
-        float resultadoPromedio = 0;
+        int resultadoPromedio = 0;
         try {
             var entrada = new BufferedReader(new FileReader(archivoAlumnos));
             String linea = null;
@@ -61,13 +59,14 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
             int indice = 0;
             while (linea != null){
                 String[] lineaArray = linea.split(";");
-                if (lineaArray[1].equalsIgnoreCase("masculino")) { 
-                    resultadoPromedio += Float.parseFloat(lineaArray[2]);
+                if (lineaArray[1].trim().equalsIgnoreCase("masculino")) { 
+                    resultadoPromedio += Integer.parseInt(lineaArray[2].trim());
                     indice++;
                 }
                 linea = entrada.readLine();
             }
-            resultadoPromedio /= indice;
+            if(indice >0){
+            resultadoPromedio =resultadoPromedio/ indice;}
             
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -76,7 +75,7 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
             ex.printStackTrace();
             throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());            
         }
-        System.out.println("La edad promedio de personas con sexo masculino es: ");
+        //System.out.println("La edad promedio de personas con sexo masculino es: ");
         return resultadoPromedio;
     }
     
@@ -91,7 +90,7 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
             
             while (linea != null){
                 String[] lineaArray = linea.split(";");
-                if (Float.parseFloat(lineaArray[3]) >= 1.65) { 
+                if (Float.parseFloat(lineaArray[3].trim()) >= 1.65) { 
                     resultadoPersonas++;
                 }
                 linea = entrada.readLine();
@@ -104,7 +103,7 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
             ex.printStackTrace();
             throw new AccesoDatosEx("Excepción al crear Alumnos " + ex.getMessage());               
         }
-        System.out.println("El número total de personas que miden más de 1.65 es: ");
+        //System.out.println("El número total de personas que miden más de 1.65 es: ");
         return resultadoPersonas;
     }
 

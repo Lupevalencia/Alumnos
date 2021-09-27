@@ -1,11 +1,9 @@
 
 package mx.com.gm.alumnos.servicio;
 
-import mx.com.gm.alumnos.datos.AccesoDatosAlumnosImpl;
-import mx.com.gm.alumnos.datos.IAccesoDatosAlumnos;
+import mx.com.gm.alumnos.datos.*;;
 import mx.com.gm.alumnos.domain.Alumno;
-import mx.com.gm.alumnos.excepciones.AccesoDatosEx;
-import mx.com.gm.alumnos.excepciones.EscrituraDatosEx;
+import mx.com.gm.alumnos.excepciones.*;
 
 
 public class AlumnosImpl implements IAlumnos {
@@ -46,4 +44,15 @@ public class AlumnosImpl implements IAlumnos {
         System.out.println("resultadoPromedio = " + resultadoPromedio);
         System.out.println("resultadoPersonas = " + resultadoPersonas); 
     }
+
+    //@Override
+    //public boolean comprobarNumeroTeclado(String estaturaPesoAlumno) {
+      //  try{
+        //Double.parseDouble(estaturaPesoAlumno);
+        //return false;
+        //}catch(NumberFormatException e){
+          //  return true;
+        //}
+    //}
+
 }

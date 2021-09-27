@@ -1,5 +1,0 @@
-guadalupe; femenino; 26; 1.6; 60.0
-lucas; masculino; 28; 1.7; 72.0
-rafa; masculino; 33; 1.65; 81.0
-maria; femenino; 24; 1.73; 54.0
-pepe; masculino; 17; 1.8; 57.0

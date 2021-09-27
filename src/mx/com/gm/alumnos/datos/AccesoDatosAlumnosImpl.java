@@ -3,15 +3,14 @@ package mx.com.gm.alumnos.datos;
 
 import java.io.*;
 import mx.com.gm.alumnos.domain.Alumno;
-import mx.com.gm.alumnos.excepciones.AccesoDatosEx;
-import mx.com.gm.alumnos.excepciones.EscrituraDatosEx;
+import mx.com.gm.alumnos.excepciones.*;
 
 
 public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
 
     @Override
     public boolean existeAlumno(String nombreFicheroAlumnos) throws AccesoDatosEx {
-        var archivoAlumnos = new File(nombreFicheroAlumnos);
+        File archivoAlumnos = new File(nombreFicheroAlumnos);
         return archivoAlumnos.exists();
        
     }
@@ -59,7 +58,8 @@ public class AccesoDatosAlumnosImpl implements IAccesoDatosAlumnos{
             int indice = 0;
             while (linea != null){
                 String[] lineaArray = linea.split(";");
-                if (lineaArray[1].trim().equalsIgnoreCase("masculino")) { 
+                //lineaArray[1].trim().charAt(0) == 'M'
+                if (lineaArray[1].trim().equalsIgnoreCase("MASCULINO")) { 
                     resultadoPromedio += Integer.parseInt(lineaArray[2].trim());
                     indice++;
                 }

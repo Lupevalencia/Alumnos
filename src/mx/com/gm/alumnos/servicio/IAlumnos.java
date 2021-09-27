@@ -10,5 +10,6 @@ public interface IAlumnos {
         
         void escribirArchivoAlumnos(Alumno alumnoAAgregar);
         void LeerYProcesarAlumnos();
+        //boolean comprobarNumeroTeclado(String alturaPesoAlumno);
         
 }

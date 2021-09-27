@@ -46,13 +46,13 @@ public class AlumnosImpl implements IAlumnos {
     }
 
     //@Override
-    //public boolean comprobarNumeroTeclado(String estaturaPesoAlumno) {
-      //  try{
-        //Double.parseDouble(estaturaPesoAlumno);
-        //return false;
-        //}catch(NumberFormatException e){
-          //  return true;
-        //}
-    //}
+    public boolean comprobarNumeroTeclado(String estaturaPesoAlumno) {
+        try{
+            Double.parseDouble(estaturaPesoAlumno);
+            return false;
+        }catch(NumberFormatException e){
+            return true;
+        }
+    }
 
 }

@@ -40,14 +40,13 @@ public class AlumnosPresentacion {
                         sexo = scanner.nextLine();
                      }
                      
-                     String edadString = "1234";
-                     
-                     while(!edadString.matches("[0-9](1,2)")){
-                        System.out.println("Introducir la edad de la persona. Sólo válidos números comprendidos entre 1 y 99: ");
-                        edadString = scanner.nextLine();
-                         System.out.println("HOLAAA");
+                   String edadString = " ";
+                   while(misAlumnos.comprobarNumeroTeclado(edadString)){
+                        System.out.println("Introduce la edad de la persona: ");
+                        edadString = scanner.nextLine();   
+                        //boolean resultado = misAlumnos.comprobarNumeroTeclado(estaturaString);
+                        
                      }
-                     
                      int edad = Integer.parseInt(edadString);
                      //int edad = 101;
                      //while(){
@@ -57,14 +56,18 @@ public class AlumnosPresentacion {
                      //}
                      
                      String estaturaString = " ";
-                     while(!estaturaString.matches("^[100-210 ]*$")){
+                     //!estaturaString.matches("^[100-210 ]*$
+                     while(misAlumnos.comprobarNumeroTeclado(estaturaString)){
                         System.out.println("Introduce la estatura de la persona en CENTÍMETROS: ");
                         estaturaString = scanner.nextLine();   
+                        //boolean resultado = misAlumnos.comprobarNumeroTeclado(estaturaString);
+                        //int estatura =0;
+                        //if(10< estatura && estatura<(float)100){}
                      }
                      float estatura = Float.parseFloat(estaturaString); 
                      
                      String pesoString = " ";
-                     while(!pesoString.matches("^[10-100]*$")){
+                     while(misAlumnos.comprobarNumeroTeclado(pesoString)){
                         System.out.println("Introduce el peso de la persona en KG: ");
                         pesoString = scanner.nextLine();
                      }
